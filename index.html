@@ -22,12 +22,12 @@
           },
           colors: {
             bg: '#0a0a0a',
-            panel: '#141414',
-            line: '#1f1f1f',
-            'line-2': '#2e2e2e',
+            panel: '#121212',
+            line: '#1c1c1c',
+            'line-2': '#2a2a2a',
             fg: '#ededed',
             body: '#b4b4b4',
-            muted: '#8f8f8f',
+            muted: '#8a8a8a',
             blue: '#3291ff',
           },
         },
@@ -40,10 +40,28 @@
     body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
     ::selection { background: #3291ff; color: #fff; }
 
-    .icon { width: 1.125rem; height: 1.125rem; color: #8f8f8f; flex-shrink: 0; transition: color .15s ease, transform .15s ease; }
-    .hover-icon:hover .icon, a:hover > .icon, button:hover > .icon { color: #ededed; }
+    .icon {
+      width: 1.0625rem;
+      height: 1.0625rem;
+      color: #8a8a8a;
+      flex-shrink: 0;
+      transition: color .15s ease, transform .15s ease;
+    }
+    .hover-icon:hover .icon,
+    a:hover .icon,
+    button:hover .icon,
+    .tech-chip:hover .icon {
+      color: #ededed;
+    }
 
-    .prose-link { color: #ededed; text-decoration: underline; text-decoration-color: #3a3a3a; text-underline-offset: 5px; text-decoration-thickness: 1.5px; transition: text-decoration-color .15s ease, color .15s ease; }
+    .prose-link {
+      color: #ededed;
+      text-decoration: underline;
+      text-decoration-color: #3a3a3a;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1.5px;
+      transition: text-decoration-color .15s ease, color .15s ease;
+    }
     .prose-link:hover { color: #3291ff; text-decoration-color: #3291ff; }
 
     #menu[hidden] { display: none; }
@@ -59,27 +77,101 @@
 
 <body class="bg-bg font-sans text-fg antialiased">
 
-  <!-- SVG icon sprite -->
+  <!-- Unified Stroked Grey SVG Sprite (stroke="currentColor" stroke-width="1.75" fill="none") -->
   <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
     <defs>
+      <!-- Navigation & UI -->
       <symbol id="i-chev-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 9h14M5 15h14"/></symbol>
       <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+
+      <!-- Social -->
       <symbol id="i-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
       <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
       <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+
+      <!-- Section & Category Icons -->
+      <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></symbol>
+      <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="2" y1="14" x2="6" y2="14"/><line x1="10" y1="8" x2="14" y2="8"/><line x1="18" y1="16" x2="22" y2="16"/></symbol>
       <symbol id="i-layout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></symbol>
       <symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/></symbol>
       <symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></symbol>
+
+      <!-- Individual Stack Item Stroked SVGs -->
+      <!-- React -->
+      <symbol id="i-react" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="1.75"/>
+        <ellipse cx="12" cy="12" rx="9.5" ry="3.75" transform="rotate(30 12 12)"/>
+        <ellipse cx="12" cy="12" rx="9.5" ry="3.75" transform="rotate(90 12 12)"/>
+        <ellipse cx="12" cy="12" rx="9.5" ry="3.75" transform="rotate(150 12 12)"/>
+      </symbol>
+      <!-- Vite -->
+      <symbol id="i-vite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13 2 4.5 13.5h6.5L10 22l9.5-12.5h-6.5L13 2z"/>
+      </symbol>
+      <!-- Vue.js -->
+      <symbol id="i-vue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 4h4.5L12 13.5 17.5 4H22L12 21 2 4z"/>
+        <path d="M6.5 4 12 13.5 17.5 4"/>
+      </symbol>
+      <!-- FastAPI -->
+      <symbol id="i-fastapi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M13 6.5 8.5 13h4l-1.5 4.5 4.5-6.5h-4L13 6.5z"/>
+      </symbol>
+      <!-- Django REST -->
+      <symbol id="i-django" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="16" rx="2.5"/>
+        <path d="m8 10 3 2.5L8 15"/>
+        <path d="M13 15h3.5"/>
+      </symbol>
+      <!-- Spring Boot -->
+      <symbol id="i-spring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2.5 19.5 6.8v8.4L12 19.5 4.5 15.2V6.8L12 2.5z"/>
+        <path d="M12 8v5"/>
+        <path d="M8.8 10.2a4 4 0 1 0 6.4 0"/>
+      </symbol>
+      <!-- PostgreSQL -->
+      <symbol id="i-postgres" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="12" cy="5.5" rx="7.5" ry="3"/>
+        <path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/>
+        <path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/>
+      </symbol>
+      <!-- Docker -->
+      <symbol id="i-docker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="9" width="3.5" height="3.5" rx=".5"/>
+        <rect x="7.5" y="9" width="3.5" height="3.5" rx=".5"/>
+        <rect x="11" y="9" width="3.5" height="3.5" rx=".5"/>
+        <rect x="7.5" y="5.5" width="3.5" height="3.5" rx=".5"/>
+        <rect x="11" y="5.5" width="3.5" height="3.5" rx=".5"/>
+        <path d="M2.5 12.5h15.5c1.2 0 2.5-.6 3-1.8-.9-.4-1.9-.3-2.6.3-.3-1.1-1.2-1.8-2.2-1.8"/>
+        <path d="M2.5 12.5c0 4.2 3.2 6.5 8 6.5 5.2 0 8.5-2.6 9.5-6.5"/>
+      </symbol>
+      <!-- Git -->
+      <symbol id="i-git" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="6" cy="6" r="2.25"/>
+        <circle cx="18" cy="8" r="2.25"/>
+        <circle cx="6" cy="18" r="2.25"/>
+        <path d="M6 8.25v7.5"/>
+        <path d="M18 10.25c0 3.5-2.5 4.5-6 4.5s-6 1-6 3.25"/>
+      </symbol>
+      <!-- Zed Editor -->
+      <symbol id="i-zed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="3"/>
+        <path d="M8.5 8.5h7l-7 7h7"/>
+      </symbol>
     </defs>
   </svg>
 
-  <!-- Nav -->
+  <!-- Sticky Nav -->
   <header class="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
-    <div class="mx-auto flex h-16 max-w-2xl items-center justify-between px-5 sm:px-6">
-      <a href="#top" class="flex items-center gap-3 text-[1.0625rem] font-semibold tracking-tight text-fg">
-        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-fg" aria-hidden="true">
+    <div class="mx-auto flex h-14 max-w-2xl items-center justify-between px-5 sm:px-6">
+      <a href="#top" class="flex items-center gap-2.5 text-[1rem] font-semibold tracking-tight text-fg">
+        <svg viewBox="0 0 24 24" class="h-4 w-4 fill-fg" aria-hidden="true">
           <rect x="3" y="3" width="4" height="4"/><rect x="10" y="3" width="4" height="4" opacity=".55"/><rect x="17" y="3" width="4" height="4" opacity=".3"/>
           <rect x="3" y="10" width="4" height="4" opacity=".55"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="10" width="4" height="4" opacity=".55"/>
           <rect x="3" y="17" width="4" height="4" opacity=".3"/><rect x="10" y="17" width="4" height="4" opacity=".55"/><rect x="17" y="17" width="4" height="4"/>
@@ -87,44 +179,45 @@
         Karthick
       </a>
       <button id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" class="-mr-2 rounded-md p-2 transition-colors hover:bg-panel">
-        <svg id="menuIcon" class="icon" style="width:1.375rem;height:1.375rem"><use href="#i-menu"/></svg>
+        <svg id="menuIcon" class="icon" style="width:1.25rem;height:1.25rem"><use href="#i-menu"/></svg>
       </button>
     </div>
     <nav id="menu" hidden class="border-t border-line bg-bg" aria-label="Primary">
-      <ul class="mx-auto flex max-w-2xl flex-col px-5 py-2.5 text-[15px] sm:px-6">
-        <li><a href="#about" class="block py-2 text-body transition-colors hover:text-fg">About</a></li>
-        <li><a href="#projects" class="block py-2 text-body transition-colors hover:text-fg">Projects</a></li>
-        <li><a href="#stack" class="block py-2 text-body transition-colors hover:text-fg">Stack</a></li>
-        <li><a href="#contact" class="block py-2 text-body transition-colors hover:text-fg">Contact</a></li>
+      <ul class="mx-auto flex max-w-2xl flex-col px-5 py-2 text-[14px] sm:px-6">
+        <li><a href="#about" class="block py-1.5 text-body transition-colors hover:text-fg">About</a></li>
+        <li><a href="#projects" class="block py-1.5 text-body transition-colors hover:text-fg">Projects</a></li>
+        <li><a href="#stack" class="block py-1.5 text-body transition-colors hover:text-fg">Stack</a></li>
+        <li><a href="#setup" class="block py-1.5 text-body transition-colors hover:text-fg">Zed Setup</a></li>
+        <li><a href="#contact" class="block py-1.5 text-body transition-colors hover:text-fg">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main id="top" class="mx-auto max-w-2xl px-5 sm:px-6">
 
-    <!-- Hero -->
-    <section class="pt-10 sm:pt-14">
+    <!-- Compact Hero -->
+    <section class="pt-6 sm:pt-9">
       <a href="https://github.com/synaptara" target="_blank" rel="noopener"
-         class="hover-icon inline-flex items-center gap-2 text-[14px] font-medium text-muted transition-colors hover:text-fg">
-        <svg class="icon" style="width:1rem;height:1rem"><use href="#i-chev-left"/></svg>
+         class="hover-icon inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition-colors hover:text-fg">
+        <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-chev-left"/></svg>
         Back to GitHub
       </a>
 
-      <h1 class="mt-6 text-[clamp(2.25rem,5.5vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-fg">
+      <h1 class="mt-4 text-[clamp(2rem,5vw,2.875rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-fg">
         Hi, I'm Karthick
       </h1>
-      <p class="mt-3 max-w-lg text-[clamp(1.0625rem,1.2vw+0.75rem,1.25rem)] leading-relaxed text-body">
+      <p class="mt-2 max-w-lg text-[clamp(0.96875rem,1vw+0.75rem,1.125rem)] leading-relaxed text-body">
         Full-stack developer building SaaS and web applications.
       </p>
 
-      <!-- Author Bar -->
-      <div class="mt-8 flex items-center justify-between gap-4 border-y border-line py-4">
-        <div class="flex items-center gap-3.5">
-          <img src="https://i.postimg.cc/wvY2VVDY/20261015-012007.jpg" alt="Karthick" width="40" height="40" referrerpolicy="no-referrer"
-               class="h-10 w-10 rounded-full bg-panel object-cover ring-1 ring-line-2" />
+      <!-- Tight Author Bar -->
+      <div class="mt-5 flex items-center justify-between gap-4 border-y border-line py-3">
+        <div class="flex items-center gap-3">
+          <img src="https://i.postimg.cc/wvY2VVDY/20261015-012007.jpg" alt="Karthick" width="36" height="36" referrerpolicy="no-referrer"
+               class="h-9 w-9 rounded-full bg-panel object-cover ring-1 ring-line-2" />
           <div>
-            <p class="text-[0.9375rem] font-medium leading-tight text-fg">Karthick</p>
-            <p class="mt-1 text-[0.8125rem] text-muted"><span id="today"></span> <span class="px-1">·</span> Portfolio</p>
+            <p class="text-[0.875rem] font-medium leading-tight text-fg">Karthick</p>
+            <p class="mt-0.5 text-[0.75rem] text-muted"><span id="today"></span> <span class="px-1">·</span> Portfolio</p>
           </div>
         </div>
         <div class="flex items-center gap-0.5">
@@ -142,122 +235,214 @@
     </section>
 
     <!-- Body -->
-    <article class="pb-6 pt-10 text-[clamp(1rem,0.92rem+0.35vw,1.0625rem)] leading-[1.75] text-body">
+    <article class="pb-4 pt-6 text-[0.96875rem] leading-[1.68] text-body">
 
       <!-- About -->
-      <section id="about" class="scroll-mt-24">
+      <section id="about" class="scroll-mt-20">
         <p>
           I build <span class="font-medium text-blue">full-stack products</span> on my own: the interface, the API and the database behind it. My work so far is mostly <span class="font-medium text-blue">SaaS and web applications</span>, shipped with React, Vue, FastAPI, Django and Spring Boot.
         </p>
 
-        <blockquote class="my-9 border-l-[3px] border-line-2 pl-5 text-[clamp(1.375rem,1rem+1.8vw,1.75rem)] font-medium leading-[1.3] tracking-[-0.025em] text-fg sm:pl-7">
+        <blockquote class="my-6 border-l-2 border-line-2 pl-4 text-[clamp(1.2rem,0.95rem+1.4vw,1.5rem)] font-medium leading-[1.3] tracking-[-0.02em] text-fg sm:pl-6">
           I'd rather ship the whole product than hand off one layer of it.
         </blockquote>
 
         <p>
-          Below are a few projects I've built end to end. The source for each one is on <a class="prose-link" href="https://github.com/synaptara" target="_blank" rel="noopener">my GitHub</a>.
+          Below are the live products I've shipped end to end. More code and experiments are on <a class="prose-link" href="https://github.com/synaptara" target="_blank" rel="noopener">my GitHub</a>.
         </p>
       </section>
 
       <!-- Projects -->
-      <section id="projects" class="mt-14 scroll-mt-24">
-        <h2 class="text-[clamp(1.375rem,1.1rem+0.8vw,1.625rem)] font-semibold leading-tight tracking-[-0.02em] text-fg">Projects</h2>
+      <section id="projects" class="mt-9 scroll-mt-20">
+        <div class="flex items-center gap-2">
+          <svg class="icon"><use href="#i-folder"/></svg>
+          <h2 class="text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-fg">Projects</h2>
+        </div>
 
-        <div class="mt-5 divide-y divide-line border-y border-line">
+        <div class="mt-3.5 divide-y divide-line border-y border-line">
 
-          <a href="https://github.com/synaptara/shav" target="_blank" rel="noopener" class="group block py-5 transition-colors">
-            <div class="flex items-center justify-between gap-4">
-              <h3 class="text-[1.0625rem] font-medium text-fg transition-colors group-hover:text-blue">shav</h3>
+          <!-- Updrop -->
+          <a href="https://updrop.in" target="_blank" rel="noopener" class="group block py-4 transition-colors">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <h3 class="text-[1rem] font-medium text-fg transition-colors group-hover:text-blue">Updrop</h3>
+                <span class="inline-flex items-center gap-1.5 rounded-full border border-line-2 bg-panel px-2 py-0.5 font-mono text-[0.6875rem] text-muted">
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400/80"></span>updrop.in
+                </span>
+              </div>
               <svg class="icon group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"><use href="#i-arrow"/></svg>
             </div>
-            <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-body">A URL shortener SaaS with a Django REST Framework API and a React frontend built on Vite.</p>
-            <p class="mt-3 font-mono text-[0.8125rem] text-muted">React · Vite · Django REST</p>
+            <p class="mt-1 text-[0.875rem] leading-relaxed text-body">Fast cloud file sharing and instant drop platform designed for seamless cross-device transfers.</p>
           </a>
 
-          <a href="https://github.com/synaptara/vmx-shophub" target="_blank" rel="noopener" class="group block py-5 transition-colors">
-            <div class="flex items-center justify-between gap-4">
-              <h3 class="text-[1.0625rem] font-medium text-fg transition-colors group-hover:text-blue">VMX ShopHub</h3>
+          <!-- FileGhost -->
+          <a href="https://file-ghost.vercel.app/" target="_blank" rel="noopener" class="group block py-4 transition-colors">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <h3 class="text-[1rem] font-medium text-fg transition-colors group-hover:text-blue">FileGhost</h3>
+                <span class="inline-flex items-center gap-1.5 rounded-full border border-line-2 bg-panel px-2 py-0.5 font-mono text-[0.6875rem] text-muted">
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400/80"></span>file-ghost.vercel.app
+                </span>
+              </div>
               <svg class="icon group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"><use href="#i-arrow"/></svg>
             </div>
-            <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-body">An e-commerce platform with a Vue.js storefront, a Spring Boot backend and a vendor dashboard.</p>
-            <p class="mt-3 font-mono text-[0.8125rem] text-muted">Vue.js · Spring Boot</p>
+            <p class="mt-1 text-[0.875rem] leading-relaxed text-body">Privacy-first ephemeral file sharing web application with self-destructing links and zero-clutter UI.</p>
           </a>
 
-          <a href="https://github.com/synaptara/creatorflow-backend" target="_blank" rel="noopener" class="group block py-5 transition-colors">
-            <div class="flex items-center justify-between gap-4">
-              <h3 class="text-[1.0625rem] font-medium text-fg transition-colors group-hover:text-blue">CreatorFlow</h3>
+          <!-- Orkflo -->
+          <a href="https://orkflo.vercel.app" target="_blank" rel="noopener" class="group block py-4 transition-colors">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <h3 class="text-[1rem] font-medium text-fg transition-colors group-hover:text-blue">Orkflo</h3>
+                <span class="inline-flex items-center gap-1.5 rounded-full border border-line-2 bg-panel px-2 py-0.5 font-mono text-[0.6875rem] text-muted">
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400/80"></span>orkflo.vercel.app
+                </span>
+              </div>
               <svg class="icon group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"><use href="#i-arrow"/></svg>
             </div>
-            <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-body">A FastAPI backend with third-party integrations, packaged to run locally with Docker.</p>
-            <p class="mt-3 font-mono text-[0.8125rem] text-muted">FastAPI · Docker</p>
-          </a>
-
-          <a href="https://github.com/synaptara/workflow-automation" target="_blank" rel="noopener" class="group block py-5 transition-colors">
-            <div class="flex items-center justify-between gap-4">
-              <h3 class="text-[1.0625rem] font-medium text-fg transition-colors group-hover:text-blue">Workflow Automation</h3>
-              <svg class="icon group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"><use href="#i-arrow"/></svg>
-            </div>
-            <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-body">A no-code automation builder in the spirit of Zapier, built with Django, React and PostgreSQL.</p>
-            <p class="mt-3 font-mono text-[0.8125rem] text-muted">Django · React · PostgreSQL</p>
+            <p class="mt-1 text-[0.875rem] leading-relaxed text-body">Visual workflow automation builder to orchestrate triggers, webhooks, and multi-step background jobs.</p>
           </a>
 
         </div>
       </section>
 
-      <!-- Stack -->
-      <section id="stack" class="mt-14 scroll-mt-24">
-        <h2 class="text-[clamp(1.375rem,1.1rem+0.8vw,1.625rem)] font-semibold leading-tight tracking-[-0.02em] text-fg">Stack</h2>
-        <p class="mt-2.5 text-[0.9375rem]">The tools I reach for across the product.</p>
+      <!-- Stack (Indented Tree + Individual Stroked Grey SVGs) -->
+      <section id="stack" class="mt-9 scroll-mt-20">
+        <div class="flex items-center gap-2">
+          <svg class="icon"><use href="#i-layers"/></svg>
+          <h2 class="text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-fg">Stack</h2>
+        </div>
+        <p class="mt-1.5 text-[0.875rem] text-muted">The tools I reach for across the product.</p>
 
-        <dl class="mt-5 divide-y divide-line border-y border-line text-[0.9375rem]">
-          <div class="grid gap-1.5 py-4 sm:grid-cols-[10.5rem_1fr] sm:items-center sm:gap-6">
-            <dt class="flex items-center gap-2.5 font-medium text-fg"><svg class="icon"><use href="#i-layout"/></svg>Frontend</dt>
-            <dd class="font-mono text-[0.84375rem] text-body">React, Vite, Vue.js</dd>
+        <div class="mt-3.5 divide-y divide-line border-y border-line text-[0.875rem]">
+
+          <!-- Frontend -->
+          <div class="py-3.5">
+            <div class="flex items-center gap-2.5 font-medium text-fg">
+              <svg class="icon"><use href="#i-layout"/></svg>
+              <span>Frontend</span>
+            </div>
+            <div class="mt-2.5 ml-2 flex flex-wrap gap-2 border-l border-line-2 pl-4">
+              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-react"/></svg>React
+              </span>
+              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-vite"/></svg>Vite
+              </span>
+              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-vue"/></svg>Vue.js
+              </span>
+            </div>
           </div>
-          <div class="grid gap-1.5 py-4 sm:grid-cols-[10.5rem_1fr] sm:items-center sm:gap-6">
-            <dt class="flex items-center gap-2.5 font-medium text-fg"><svg class="icon"><use href="#i-server"/></svg>Backend</dt>
-            <dd class="font-mono text-[0.84375rem] text-body">FastAPI, Django REST Framework, Spring Boot</dd>
+
+          <!-- Backend -->
+          <div class="py-3.5">
+            <div class="flex items-center gap-2.5 font-medium text-fg">
+              <svg class="icon"><use href="#i-server"/></svg>
+              <span>Backend</span>
+            </div>
+            <div class="mt-2.5 ml-2 flex flex-wrap gap-2 border-l border-line-2 pl-4">
+              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-fastapi"/></svg>FastAPI
+              </span>
+              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-django"/></svg>Django REST Framework
+              </span>
+              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-spring"/></svg>Spring Boot
+              </span>
+            </div>
           </div>
-          <div class="grid gap-1.5 py-4 sm:grid-cols-[10.5rem_1fr] sm:items-center sm:gap-6">
-            <dt class="flex items-center gap-2.5 font-medium text-fg"><svg class="icon"><use href="#i-database"/></svg>Data and tooling</dt>
-            <dd class="font-mono text-[0.84375rem] text-body">PostgreSQL, Docker, Git</dd>
+
+          <!-- Data and tooling -->
+          <div class="py-3.5">
+            <div class="flex items-center gap-2.5 font-medium text-fg">
+              <svg class="icon"><use href="#i-database"/></svg>
+              <span>Data and tooling</span>
+            </div>
+            <div class="mt-2.5 ml-2 flex flex-wrap gap-2 border-l border-line-2 pl-4">
+              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-postgres"/></svg>PostgreSQL
+              </span>
+              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-docker"/></svg>Docker
+              </span>
+              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-git"/></svg>Git
+              </span>
+            </div>
           </div>
-        </dl>
+
+        </div>
+      </section>
+
+      <!-- Zed Settings Section -->
+      <section id="setup" class="mt-9 scroll-mt-20">
+        <div class="flex items-center gap-2">
+          <svg class="icon"><use href="#i-sliders"/></svg>
+          <h2 class="text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-fg">Setup</h2>
+        </div>
+
+        <a href="https://github.com/Synaptara/zed-settings" target="_blank" rel="noopener"
+           class="group mt-3.5 block rounded-xl border border-line bg-panel p-4 transition-colors hover:border-line-2">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+              <svg class="icon group-hover:text-fg"><use href="#i-zed"/></svg>
+              <span class="text-[0.96875rem] font-medium text-fg transition-colors group-hover:text-blue">Zed Editor Configuration</span>
+            </div>
+            <svg class="icon group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"><use href="#i-arrow"/></svg>
+          </div>
+          <p class="mt-1.5 text-[0.875rem] leading-relaxed text-body">
+            My personal <span class="font-mono text-[0.8125rem] text-fg">settings.json</span> and keymaps tuned for low-latency full-stack development across Python, TypeScript, and Rust tooling.
+          </p>
+          <p class="mt-2.5 font-mono text-[0.75rem] text-muted">github.com/Synaptara/zed-settings</p>
+        </a>
       </section>
 
       <!-- Contact -->
-      <section id="contact" class="mt-14 scroll-mt-24">
-        <h2 class="text-[clamp(1.375rem,1.1rem+0.8vw,1.625rem)] font-semibold leading-tight tracking-[-0.02em] text-fg">Contact</h2>
-        <p class="mt-3">
+      <section id="contact" class="mt-9 scroll-mt-20">
+        <div class="flex items-center gap-2">
+          <svg class="icon"><use href="#i-mail"/></svg>
+          <h2 class="text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-fg">Contact</h2>
+        </div>
+        <p class="mt-2.5 text-[0.9375rem]">
           I'm open to new projects. If you care about the product you're making, <a class="prose-link" href="mailto:karthick.aidev@gmail.com">send me an email</a> and tell me what you have in mind.
         </p>
+        <div class="mt-3">
+          <button id="copyEmailBtn" type="button"
+                  class="inline-flex items-center gap-2 rounded-lg border border-line bg-panel px-3 py-1.5 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
+            <svg id="copyEmailIcon" class="icon" style="width:0.9rem;height:0.9rem"><use href="#i-copy"/></svg>
+            <span id="copyEmailText">karthick.aidev@gmail.com</span>
+          </button>
+        </div>
       </section>
+
     </article>
 
     <!-- Footer -->
-    <footer class="mt-8 border-t border-line py-8">
+    <footer class="mt-6 border-t border-line py-6">
       <div class="flex items-center justify-between gap-4">
-        <div class="flex items-center gap-3.5">
-          <img src="https://i.postimg.cc/wvY2VVDY/20261015-012007.jpg" alt="Karthick" width="44" height="44" referrerpolicy="no-referrer"
-               class="h-11 w-11 shrink-0 rounded-full bg-panel object-cover ring-1 ring-line-2" />
+        <div class="flex items-center gap-3">
+          <img src="https://i.postimg.cc/wvY2VVDY/20261015-012007.jpg" alt="Karthick" width="38" height="38" referrerpolicy="no-referrer"
+               class="h-9 w-9 shrink-0 rounded-full bg-panel object-cover ring-1 ring-line-2" />
           <div>
-            <p class="text-[1rem] font-medium leading-tight text-fg">Karthick</p>
-            <p class="mt-1 whitespace-nowrap text-[0.875rem] text-muted">Full-stack developer</p>
+            <p class="text-[0.9375rem] font-medium leading-tight text-fg">Karthick</p>
+            <p class="mt-0.5 whitespace-nowrap text-[0.8125rem] text-muted">Full-stack developer</p>
           </div>
         </div>
-        <div class="flex items-center gap-1">
-          <a href="https://github.com/synaptara" target="_blank" rel="noopener" aria-label="GitHub" class="rounded-md p-2.5 transition-colors hover:bg-panel">
-            <svg class="icon" style="width:1.25rem;height:1.25rem"><use href="#i-github"/></svg>
+        <div class="flex items-center gap-0.5">
+          <a href="https://github.com/synaptara" target="_blank" rel="noopener" aria-label="GitHub" class="rounded-md p-2 transition-colors hover:bg-panel">
+            <svg class="icon"><use href="#i-github"/></svg>
           </a>
-          <a href="https://linkedin.com/in/karthick-aidev" target="_blank" rel="noopener" aria-label="LinkedIn" class="rounded-md p-2.5 transition-colors hover:bg-panel">
-            <svg class="icon" style="width:1.25rem;height:1.25rem"><use href="#i-linkedin"/></svg>
+          <a href="https://linkedin.com/in/karthick-aidev" target="_blank" rel="noopener" aria-label="LinkedIn" class="rounded-md p-2 transition-colors hover:bg-panel">
+            <svg class="icon"><use href="#i-linkedin"/></svg>
           </a>
-          <a href="mailto:karthick.aidev@gmail.com" aria-label="Email" class="rounded-md p-2.5 transition-colors hover:bg-panel">
-            <svg class="icon" style="width:1.25rem;height:1.25rem"><use href="#i-mail"/></svg>
+          <a href="mailto:karthick.aidev@gmail.com" aria-label="Email" class="rounded-md p-2 transition-colors hover:bg-panel">
+            <svg class="icon"><use href="#i-mail"/></svg>
           </a>
         </div>
       </div>
-      <p class="mt-8 text-[0.8125rem] text-muted">© <span id="year"></span> Karthick</p>
+      <p class="mt-5 text-[0.75rem] text-muted">© <span id="year"></span> Karthick</p>
     </footer>
 
   </main>
@@ -268,7 +453,7 @@
     document.getElementById('today').textContent = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     document.getElementById('year').textContent = now.getFullYear();
 
-    // Menu
+    // Mobile Menu
     const menuBtn = document.getElementById('menuBtn');
     const menu = document.getElementById('menu');
     const menuIcon = document.getElementById('menuIcon').querySelector('use');
@@ -280,7 +465,20 @@
     }
     menuBtn.addEventListener('click', () => setMenu(menu.hidden));
     menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+    // One-click Email Copy
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const copyEmailText = document.getElementById('copyEmailText');
+    const copyEmailIcon = document.getElementById('copyEmailIcon').querySelector('use');
+    copyEmailBtn.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText('karthick.aidev@gmail.com'); } catch (e) {}
+      copyEmailText.textContent = 'Copied to clipboard';
+      copyEmailIcon.setAttribute('href', '#i-check');
+      setTimeout(() => {
+        copyEmailText.textContent = 'karthick.aidev@gmail.com';
+        copyEmailIcon.setAttribute('href', '#i-copy');
+      }, 1800);
+    });
   </script>
 </body>
-  </html>
-  
+</html>
