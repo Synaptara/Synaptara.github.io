@@ -1,484 +1,436 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Karthick — Full-stack developer</title>
-  <meta name="description" content="Karthick builds full-stack SaaS and web applications, frontend to backend." />
-  <meta name="theme-color" content="#0a0a0a" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karthick M S — Full Stack Developer</title>
+<meta name="description" content="Full stack developer building workflow automation and SaaS platforms with React, Python and FastAPI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Ovo&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6eedc;--bg2:#efe5cd;--card:#fbf6e9;--ink:#1c2434;--mute:#5b6476;--line:#dbcfb2;
+  --accent:#1f3a63;--on:#fbf6e9;--red:#c4573f;--blue:#a8bccf;--snow:#fbf6e9;--wave:#9db4c9;--leaf:#5f7f6a;
+  --fuji:url(https://i.postimg.cc/5y6rdx9H/1792178118428.png);--pos:85% 40%;--serif:'Ovo',Georgia,serif;--mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+:root[data-theme="dark"]{
+  --bg:#12161d;--bg2:#171c25;--card:#1b212b;--ink:#ece4d2;--mute:#9aa3b2;--line:#2b3340;
+  --accent:#9bb8e6;--on:#12161d;--red:#d4684e;--blue:#33506f;--snow:#e9e1cf;--wave:#35516d;--leaf:#7fa28a;--fuji:url(https://i.postimg.cc/KzV6YKHq/1792178247825.png);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161d;--bg2:#171c25;--card:#1b212b;--ink:#ece4d2;--mute:#9aa3b2;--line:#2b3340;
+  --accent:#9bb8e6;--on:#12161d;--red:#d4684e;--blue:#33506f;--snow:#e9e1cf;--wave:#35516d;--leaf:#7fa28a;--fuji:url(https://i.postimg.cc/KzV6YKHq/1792178247825.png);}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative}
+h1,h2,h3,h4{font-weight:400;line-height:1.15}
+.tag{font-family:var(--mono);font-size:11.5px;color:var(--mute)}
+svg.ln{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+/* header */
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:58px;gap:12px}
+.logo{display:flex;align-items:center;gap:9px;font-size:21px}
+.logo svg{width:22px;height:22px;fill:var(--accent)}
+.links{display:flex;gap:26px;font-family:var(--mono);font-size:13px}
+.links a{color:var(--mute)}.links a:hover{color:var(--ink)}
+.acts{display:flex;gap:8px;align-items:center}
+.ibtn{height:36px;min-width:36px;padding:0 10px;border-radius:18px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font-family:var(--mono);font-size:12px}
+.ibtn svg{width:17px;height:17px}
+.ibtn.k{display:flex;gap:6px;align-items:center;color:var(--mute)}
+.moon{display:none}
+:root[data-theme="dark"] .sun{display:none}:root[data-theme="dark"] .moon{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sun{display:none}:root:not([data-theme="light"]) .moon{display:block}}
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Geist', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
-            mono: ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-          },
-          colors: {
-            bg: '#0a0a0a',
-            panel: '#121212',
-            line: '#1c1c1c',
-            'line-2': '#2a2a2a',
-            fg: '#ededed',
-            body: '#b4b4b4',
-            muted: '#8a8a8a',
-            blue: '#3291ff',
-          },
-        },
-      },
-    };
-  </script>
+/* hero */
+.hero{position:relative;overflow:hidden;padding:54px 0 130px}
+.scene{position:absolute;inset:0;background:var(--fuji) var(--pos)/cover no-repeat;pointer-events:none;transform:translate(calc(var(--mx,0)*-10px),calc(var(--my,0)*-5px)) scale(1.04);transition:transform .25s ease-out;-webkit-mask-image:linear-gradient(90deg,transparent,#000 28%),linear-gradient(0deg,transparent,#000 22%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 28%),linear-gradient(0deg,transparent,#000 22%);mask-composite:intersect}
+.hero-grid{position:relative;display:grid;grid-template-columns:1fr 1.15fr;gap:36px;align-items:center}
+.hero h1{font-size:clamp(34px,5vw,50px);margin-bottom:14px}
+.lead{color:var(--mute);max-width:36ch;margin-bottom:22px}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:13px;padding:11px 18px;border-radius:7px;border:1px solid var(--accent);display:inline-block;transition:transform .15s}
+.btn.p{background:var(--accent);color:var(--on)}.btn.s{background:var(--card);color:var(--accent)}
+.btn:hover{transform:translateY(-2px)}
+.win{background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 40px -18px rgba(20,30,50,.45);overflow:hidden;font-family:var(--mono);font-size:11.5px;position:relative}
+.bar{display:flex;gap:6px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.bar button{margin-left:auto;border:1px solid var(--line);background:var(--card);border-radius:5px;padding:2px 8px;font:inherit;color:var(--mute)}
+.wbody{display:grid;grid-template-columns:150px 1fr}
+.side{border-right:1px solid var(--line);padding:10px;display:grid;gap:3px;align-content:start}
+.side b{font-weight:500;color:var(--mute);font-size:10.5px;margin:4px 0 2px}
+.side button,.side a{padding:5px 8px;border-radius:5px;text-align:left;border:0;background:none;font:inherit}
+.side button:hover,.side a:hover{background:var(--bg2)}
+.side button.on{background:var(--accent);color:var(--on)}
+.doc{padding:14px 16px;min-height:190px}
+.doc h4{font-size:19px;font-family:var(--serif);margin-bottom:2px}
+.doc .tag{display:block;margin-bottom:8px}
+.doc pre{font-family:var(--mono);white-space:pre-wrap;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:10px;line-height:1.65}
+.doc .k{color:var(--red)}.doc .c{color:var(--mute)}
+.doc.swap{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-  <style>
-    html { background: #0a0a0a; color-scheme: dark; }
-    body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
-    ::selection { background: #3291ff; color: #fff; }
+/* decorative strokes */
+.deco{position:absolute;pointer-events:none;color:var(--red)}
+.deco.g{color:var(--leaf)}
+.pimg{height:auto;mix-blend-mode:multiply}
+.flip{scale:-1 1}
+:root[data-theme="dark"] .pimg{mix-blend-mode:screen;filter:invert(1) hue-rotate(180deg) brightness(.9)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pimg{mix-blend-mode:screen;filter:invert(1) hue-rotate(180deg) brightness(.9)}}
+.sway{transform-origin:50% 100%;animation:sway 6s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-1.8deg)}to{transform:rotate(1.8deg)}}
+.bird{color:var(--accent);animation:drift 9s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(14px,-8px)}}
+.seig{display:block;width:100%;height:46px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
+.dash{stroke-dasharray:4 5;animation:dash 1.1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-9}}
 
-    .icon {
-      width: 1.0625rem;
-      height: 1.0625rem;
-      color: #8a8a8a;
-      flex-shrink: 0;
-      transition: color .15s ease, transform .15s ease;
-    }
-    .hover-icon:hover .icon,
-    a:hover .icon,
-    button:hover .icon,
-    .tech-chip:hover .icon {
-      color: #ededed;
-    }
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;position:relative;transition:transform .2s,border-color .2s}
+.card::before{content:"";position:absolute;inset:5px;border:1px dashed var(--line);border-radius:6px;pointer-events:none;transition:border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:var(--red)}
+.card:hover::before{border-color:var(--red)}
+.card>*{position:relative}
+.card h3{font-size:19px;margin-bottom:6px}
+.card p{color:var(--mute);font-size:15.5px;line-height:1.55}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-76px}
+.pillars .card{display:grid;gap:8px;align-content:start}
+.ico{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--accent);color:var(--accent);background:var(--bg2)}
+.ico.r{border-color:var(--red);color:var(--red)}
+.ico svg{width:24px;height:24px}
+section{padding:46px 0;position:relative}
+.sec-h{font-size:clamp(24px,3.2vw,32px);margin-bottom:22px;max-width:30ch;display:flex;align-items:center;gap:12px}
+.sec-h::after{content:"";flex:1;min-width:30px;height:8px;background:radial-gradient(circle at 4px 4px,var(--red) 2px,transparent 2.5px) 0 0/16px 8px repeat-x;opacity:.6;max-width:120px}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.bento .card{display:flex;flex-direction:column;gap:10px}
+.b-a{grid-column:span 4}.b-b{grid-column:span 2}.b-c,.b-d{grid-column:span 3}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.chips span{font-family:var(--mono);font-size:11.5px;padding:3px 9px;border:1px solid var(--line);border-radius:99px;background:var(--bg2)}
+.card ul{list-style:none;display:grid;gap:7px;color:var(--mute);font-size:15.5px;line-height:1.5}
+.card li{padding-left:16px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;border:1.5px solid var(--red)}
+.flow{width:100%;max-width:420px;height:auto}
+.flow rect{fill:var(--bg2);stroke:var(--accent);stroke-width:1.3}
+.flow text{fill:var(--ink);font-family:var(--mono);font-size:10px;text-anchor:middle}
+.flow path{fill:none;stroke:var(--red);stroke-width:1.5}
+.ring{display:flex;align-items:center;gap:14px}
+.ring svg{width:84px;height:84px;flex:none;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:5;stroke-linecap:round}
+.ring b{font-weight:400;font-size:30px;color:var(--accent);line-height:1}
+.stack{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
+.stack div{padding:18px;border-right:1px dashed var(--line)}
+.stack div:last-child{border-right:0}
+.stack h3{font-size:17px;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.stack h3 svg{width:18px;height:18px;color:var(--red)}
+.stack p{font-family:var(--mono);font-size:12.5px;color:var(--mute);line-height:1.8}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row{display:flex;justify-content:space-between;gap:4px 12px;flex-wrap:wrap}
+.cta{text-align:center;padding:60px 0 90px;position:relative;overflow:hidden}
+.cta p{color:var(--mute);max-width:46ch;margin:0 auto 22px}
+.cta h2{font-size:clamp(28px,4.4vw,40px);margin-bottom:10px}
+.rule{width:64px;height:2px;background:var(--red);margin:0 auto 14px;border-radius:2px}
+footer{border-top:1px solid var(--line);padding:26px 0;font-size:14px;color:var(--mute)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.foot .links{gap:18px}
 
-    .prose-link {
-      color: #ededed;
-      text-decoration: underline;
-      text-decoration-color: #3a3a3a;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 1.5px;
-      transition: text-decoration-color .15s ease, color .15s ease;
-    }
-    .prose-link:hover { color: #3291ff; text-decoration-color: #3291ff; }
+/* palette */
+.pal{position:fixed;inset:0;z-index:50;background:rgba(10,14,22,.5);display:grid;place-items:start center;padding:12vh 16px 0}
+.pal[hidden]{display:none}
+.pbox{width:min(480px,100%);background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 60px -20px rgba(0,0,0,.6);overflow:hidden;font-family:var(--mono);font-size:13px}
+.pbox input{width:100%;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);font:inherit;padding:14px 16px;outline:0}
+.pbox ul{list-style:none;max-height:50vh;overflow:auto;padding:6px}
+.pbox li{padding:9px 12px;border-radius:6px;display:flex;justify-content:space-between;gap:10px;cursor:pointer}
+.pbox li span{color:var(--mute);font-size:11.5px}
+.pbox li.on{background:var(--accent);color:var(--on)}.pbox li.on span{color:inherit;opacity:.8}
 
-    #menu[hidden] { display: none; }
+.hero-grid>*{animation:fade .7s ease both}.hero-grid>*:nth-child(2){animation-delay:.12s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
-    :focus-visible { outline: 2px solid #3291ff; outline-offset: 3px; border-radius: 6px; }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      * { transition: none !important; }
-    }
-  </style>
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .pillars{grid-template-columns:repeat(2,1fr)}
+  .stack{grid-template-columns:repeat(2,1fr)}
+  .stack div:nth-child(2){border-right:0}.stack div:nth-child(-n+2){border-bottom:1px dashed var(--line)}
+  .two{grid-template-columns:1fr}
+  .b-a,.b-b,.b-c,.b-d{grid-column:span 6}
+  .deco.hide-m{display:none}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .links.top,.ibtn.k span{display:none}
+  .hero{padding:32px 0 110px}
+  .scene{opacity:.6;--pos:78% 30%}
+  .wbody{grid-template-columns:1fr}
+  .side{border-right:0;border-bottom:1px solid var(--line);display:flex;overflow-x:auto;gap:4px;padding:8px}
+  .side b{display:none}.side button,.side a{white-space:nowrap;border:1px solid var(--line)}
+  .pillars{gap:10px;margin-top:-64px}.pillars .card{padding:14px}.pillars .card p{font-size:14px}
+  .stack{grid-template-columns:1fr}.stack div{border-right:0;border-bottom:1px dashed var(--line)}.stack div:last-child{border-bottom:0}
+  section{padding:36px 0}
+}
+</style>
 </head>
+<body>
 
-<body class="bg-bg font-sans text-fg antialiased">
+<!-- shared stroke art -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="sei" width="40" height="20" patternUnits="userSpaceOnUse">
+      <g style="fill:none;stroke:var(--wave);stroke-width:1.4">
+        <circle cx="0" cy="20" r="19"/><circle cx="0" cy="20" r="13"/><circle cx="0" cy="20" r="7"/>
+        <circle cx="40" cy="20" r="19"/><circle cx="40" cy="20" r="13"/><circle cx="40" cy="20" r="7"/>
+        <circle cx="20" cy="10" r="19"/><circle cx="20" cy="10" r="13"/><circle cx="20" cy="10" r="7"/>
+      </g>
+    </pattern>
+    <symbol id="birdS" viewBox="0 0 44 22"><path d="M2 12 Q12 0 22 11 Q32 0 42 12 Q32 8 22 17 Q12 8 2 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
 
-  <!-- Unified Stroked Grey SVG Sprite (stroke="currentColor" stroke-width="1.75" fill="none") -->
-  <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
-    <defs>
-      <!-- Navigation & UI -->
-      <symbol id="i-chev-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></symbol>
-      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 9h14M5 15h14"/></symbol>
-      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
-      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
-      <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/></symbol>
-      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
-
-      <!-- Social -->
-      <symbol id="i-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
-      <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
-      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
-
-      <!-- Section & Category Icons -->
-      <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></symbol>
-      <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></symbol>
-      <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="2" y1="14" x2="6" y2="14"/><line x1="10" y1="8" x2="14" y2="8"/><line x1="18" y1="16" x2="22" y2="16"/></symbol>
-      <symbol id="i-layout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></symbol>
-      <symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/></symbol>
-      <symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></symbol>
-
-      <!-- Individual Stack Item Stroked SVGs -->
-      <!-- React -->
-      <symbol id="i-react" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="1.75"/>
-        <ellipse cx="12" cy="12" rx="9.5" ry="3.75" transform="rotate(30 12 12)"/>
-        <ellipse cx="12" cy="12" rx="9.5" ry="3.75" transform="rotate(90 12 12)"/>
-        <ellipse cx="12" cy="12" rx="9.5" ry="3.75" transform="rotate(150 12 12)"/>
-      </symbol>
-      <!-- Vite -->
-      <symbol id="i-vite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M13 2 4.5 13.5h6.5L10 22l9.5-12.5h-6.5L13 2z"/>
-      </symbol>
-      <!-- Vue.js -->
-      <symbol id="i-vue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 4h4.5L12 13.5 17.5 4H22L12 21 2 4z"/>
-        <path d="M6.5 4 12 13.5 17.5 4"/>
-      </symbol>
-      <!-- FastAPI -->
-      <symbol id="i-fastapi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M13 6.5 8.5 13h4l-1.5 4.5 4.5-6.5h-4L13 6.5z"/>
-      </symbol>
-      <!-- Django REST -->
-      <symbol id="i-django" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="4" width="18" height="16" rx="2.5"/>
-        <path d="m8 10 3 2.5L8 15"/>
-        <path d="M13 15h3.5"/>
-      </symbol>
-      <!-- Spring Boot -->
-      <symbol id="i-spring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2.5 19.5 6.8v8.4L12 19.5 4.5 15.2V6.8L12 2.5z"/>
-        <path d="M12 8v5"/>
-        <path d="M8.8 10.2a4 4 0 1 0 6.4 0"/>
-      </symbol>
-      <!-- PostgreSQL -->
-      <symbol id="i-postgres" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <ellipse cx="12" cy="5.5" rx="7.5" ry="3"/>
-        <path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/>
-        <path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/>
-      </symbol>
-      <!-- Docker -->
-      <symbol id="i-docker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="4" y="9" width="3.5" height="3.5" rx=".5"/>
-        <rect x="7.5" y="9" width="3.5" height="3.5" rx=".5"/>
-        <rect x="11" y="9" width="3.5" height="3.5" rx=".5"/>
-        <rect x="7.5" y="5.5" width="3.5" height="3.5" rx=".5"/>
-        <rect x="11" y="5.5" width="3.5" height="3.5" rx=".5"/>
-        <path d="M2.5 12.5h15.5c1.2 0 2.5-.6 3-1.8-.9-.4-1.9-.3-2.6.3-.3-1.1-1.2-1.8-2.2-1.8"/>
-        <path d="M2.5 12.5c0 4.2 3.2 6.5 8 6.5 5.2 0 8.5-2.6 9.5-6.5"/>
-      </symbol>
-      <!-- Git -->
-      <symbol id="i-git" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="6" cy="6" r="2.25"/>
-        <circle cx="18" cy="8" r="2.25"/>
-        <circle cx="6" cy="18" r="2.25"/>
-        <path d="M6 8.25v7.5"/>
-        <path d="M18 10.25c0 3.5-2.5 4.5-6 4.5s-6 1-6 3.25"/>
-      </symbol>
-      <!-- Zed Editor -->
-      <symbol id="i-zed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="3"/>
-        <path d="M8.5 8.5h7l-7 7h7"/>
-      </symbol>
-    </defs>
-  </svg>
-
-  <!-- Sticky Nav -->
-  <header class="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
-    <div class="mx-auto flex h-14 max-w-2xl items-center justify-between px-5 sm:px-6">
-      <a href="#top" class="flex items-center gap-2.5 text-[1rem] font-semibold tracking-tight text-fg">
-        <svg viewBox="0 0 24 24" class="h-4 w-4 fill-fg" aria-hidden="true">
-          <rect x="3" y="3" width="4" height="4"/><rect x="10" y="3" width="4" height="4" opacity=".55"/><rect x="17" y="3" width="4" height="4" opacity=".3"/>
-          <rect x="3" y="10" width="4" height="4" opacity=".55"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="10" width="4" height="4" opacity=".55"/>
-          <rect x="3" y="17" width="4" height="4" opacity=".3"/><rect x="10" y="17" width="4" height="4" opacity=".55"/><rect x="17" y="17" width="4" height="4"/>
-        </svg>
-        Karthick
-      </a>
-      <button id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" class="-mr-2 rounded-md p-2 transition-colors hover:bg-panel">
-        <svg id="menuIcon" class="icon" style="width:1.25rem;height:1.25rem"><use href="#i-menu"/></svg>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Karthick M S home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20L12 21z"/></svg>Karthick</a>
+    <nav class="links top" aria-label="Primary"><a href="#work">Work</a><a href="#stack">Stack</a><a href="#path">Path</a><a href="#contact">Contact</a></nav>
+    <div class="acts">
+      <button class="ibtn k" id="open-pal" aria-label="Open command palette"><svg class="ln" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg><span>Ctrl K</span></button>
+      <button class="ibtn" id="theme" aria-label="Toggle light and dark theme">
+        <svg class="ln sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="ln moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
       </button>
     </div>
-    <nav id="menu" hidden class="border-t border-line bg-bg" aria-label="Primary">
-      <ul class="mx-auto flex max-w-2xl flex-col px-5 py-2 text-[14px] sm:px-6">
-        <li><a href="#about" class="block py-1.5 text-body transition-colors hover:text-fg">About</a></li>
-        <li><a href="#projects" class="block py-1.5 text-body transition-colors hover:text-fg">Projects</a></li>
-        <li><a href="#stack" class="block py-1.5 text-body transition-colors hover:text-fg">Stack</a></li>
-        <li><a href="#setup" class="block py-1.5 text-body transition-colors hover:text-fg">Zed Setup</a></li>
-        <li><a href="#contact" class="block py-1.5 text-body transition-colors hover:text-fg">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  </div>
+</header>
 
-  <main id="top" class="mx-auto max-w-2xl px-5 sm:px-6">
+<main id="top">
+<div class="hero" id="hero">
+  <div class="scene" aria-hidden="true"></div>
+  <img class="deco pimg sway" src="https://i.postimg.cc/Jn9FLfs5/1792178296139.png" alt="" loading="lazy" style="left:-8px;bottom:-10px;width:150px">
+  <svg class="deco bird hide-m" style="right:8%;top:70px;width:46px" viewBox="0 0 44 22" aria-hidden="true"><use href="#birdS"/></svg>
+  <svg class="deco bird hide-m" style="left:38%;top:36px;width:30px;animation-delay:-3s" viewBox="0 0 44 22" aria-hidden="true"><use href="#birdS"/></svg>
 
-    <!-- Compact Hero -->
-    <section class="pt-6 sm:pt-9">
-      <a href="https://github.com/synaptara" target="_blank" rel="noopener"
-         class="hover-icon inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition-colors hover:text-fg">
-        <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-chev-left"/></svg>
-        Back to GitHub
-      </a>
-
-      <h1 class="mt-4 text-[clamp(2rem,5vw,2.875rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-fg">
-        Hi, I'm Karthick
-      </h1>
-      <p class="mt-2 max-w-lg text-[clamp(0.96875rem,1vw+0.75rem,1.125rem)] leading-relaxed text-body">
-        Full-stack developer building SaaS and web applications.
-      </p>
-
-      <!-- Tight Author Bar -->
-      <div class="mt-5 flex items-center justify-between gap-4 border-y border-line py-3">
-        <div class="flex items-center gap-3">
-          <img src="https://i.postimg.cc/wvY2VVDY/20261015-012007.jpg" alt="Karthick" width="36" height="36" referrerpolicy="no-referrer"
-               class="h-9 w-9 rounded-full bg-panel object-cover ring-1 ring-line-2" />
-          <div>
-            <p class="text-[0.875rem] font-medium leading-tight text-fg">Karthick</p>
-            <p class="mt-0.5 text-[0.75rem] text-muted"><span id="today"></span> <span class="px-1">·</span> Portfolio</p>
-          </div>
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Calm software for<br>busy systems.</h1>
+      <p class="lead">I'm Karthick M S, a full stack developer who builds workflow automation and SaaS platforms with React, Python and FastAPI.</p>
+      <div class="btns"><a class="btn p" href="#work">See my work</a><a class="btn s" href="mailto:karthick.aidev@gmail.com">Say hello</a></div>
+    </div>
+    <div class="win">
+      <div class="bar"><i></i><i></i><i></i><button id="win-pal" aria-label="Open command palette">Ctrl K</button></div>
+      <div class="wbody">
+        <div class="side" id="side">
+          <b>Projects</b>
+          <button class="on" data-n="orkflo">Orkflo</button><button data-n="updrop">Updrop</button><button data-n="shop">E-commerce</button>
+          <b>Jump to</b>
+          <a href="#stack">Stack</a><a href="#path">Path</a><a href="#contact">Contact</a>
         </div>
-        <div class="flex items-center gap-0.5">
-          <a href="https://github.com/synaptara" target="_blank" rel="noopener" aria-label="GitHub" class="rounded-md p-2 transition-colors hover:bg-panel">
-            <svg class="icon"><use href="#i-github"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/karthick-aidev" target="_blank" rel="noopener" aria-label="LinkedIn" class="rounded-md p-2 transition-colors hover:bg-panel">
-            <svg class="icon"><use href="#i-linkedin"/></svg>
-          </a>
-          <a href="mailto:karthick.aidev@gmail.com" aria-label="Email" class="rounded-md p-2 transition-colors hover:bg-panel">
-            <svg class="icon"><use href="#i-mail"/></svg>
-          </a>
-        </div>
+        <div class="doc" id="doc"></div>
       </div>
-    </section>
+    </div>
+  </div>
+</div>
 
-    <!-- Body -->
-    <article class="pb-4 pt-6 text-[0.96875rem] leading-[1.68] text-body">
+<div class="wrap">
+  <div class="pillars">
+    <div class="card"><div class="ico"><svg class="ln" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></div><h3>Full stack</h3><p>Interfaces and APIs built together, from canvas to queue.</p></div>
+    <div class="card"><div class="ico r"><svg class="ln" viewBox="0 0 24 24"><path d="M13 2L5 14h6l-1 8 8-12h-6z"/></svg></div><h3>Event driven</h3><p>Async triggers and actions that stay reliable under load.</p></div>
+    <div class="card"><div class="ico"><svg class="ln" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></svg></div><h3>Production ready</h3><p>Auth, rate limits and webhooks verified before launch.</p></div>
+    <div class="card"><div class="ico r"><svg class="ln" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg></div><h3>AI assisted</h3><p>LLM features, like metadata generation, wired into real products.</p></div>
+  </div>
+</div>
 
-      <!-- About -->
-      <section id="about" class="scroll-mt-20">
-        <p>
-          I build <span class="font-medium text-blue">full-stack products</span> on my own: the interface, the API and the database behind it. My work so far is mostly <span class="font-medium text-blue">SaaS and web applications</span>, shipped with React, Vue, FastAPI, Django and Spring Boot.
-        </p>
+<svg class="seig" style="margin-top:30px" aria-hidden="true"><rect width="100%" height="100%" fill="url(#sei)"/></svg>
 
-        <blockquote class="my-6 border-l-2 border-line-2 pl-4 text-[clamp(1.2rem,0.95rem+1.4vw,1.5rem)] font-medium leading-[1.3] tracking-[-0.02em] text-fg sm:pl-6">
-          I'd rather ship the whole product than hand off one layer of it.
-        </blockquote>
-
-        <p>
-          Below are the live products I've shipped end to end. More code and experiments are on <a class="prose-link" href="https://github.com/synaptara" target="_blank" rel="noopener">my GitHub</a>.
-        </p>
-      </section>
-
-      <!-- Projects -->
-      <section id="projects" class="mt-9 scroll-mt-20">
-        <div class="flex items-center gap-2">
-          <svg class="icon"><use href="#i-folder"/></svg>
-          <h2 class="text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-fg">Projects</h2>
+<section id="work">
+  <img class="deco pimg hide-m flip" src="https://i.postimg.cc/Jn9FLfs5/1792178296139.png" alt="" loading="lazy" style="right:-14px;top:30px;width:120px">
+  <div class="wrap">
+    <h2 class="sec-h">Things I've built, end to end.</h2>
+    <div class="bento">
+      <article class="card b-a">
+        <span class="tag">2026 – present</span>
+        <h3>Orkflo: workflow automation SaaS</h3>
+        <svg class="flow" viewBox="0 0 380 50" role="img" aria-label="Trigger to Celery to Action to Discord">
+          <rect x="1" y="11" width="74" height="28" rx="6"/><text x="38" y="29">Trigger</text>
+          <rect x="105" y="11" width="74" height="28" rx="6"/><text x="142" y="29">Celery</text>
+          <rect x="209" y="11" width="74" height="28" rx="6"/><text x="246" y="29">Action</text>
+          <rect x="305" y="11" width="74" height="28" rx="6"/><text x="342" y="29">Discord</text>
+          <path class="dash" d="M75 25H105M179 25H209M283 25H305"/>
+        </svg>
+        <ul>
+          <li>Interactive React canvas for connecting third-party apps into workflows.</li>
+          <li>Event-driven backend with Celery workers and Redis for async triggers and actions.</li>
+          <li>Secure authentication, real-time Discord integration and a deployment pipeline.</li>
+        </ul>
+        <div class="chips"><span>React.js</span><span>Python</span><span>Celery</span><span>Redis</span></div>
+      </article>
+      <article class="card b-b">
+        <span class="tag">Ak InfoPark</span>
+        <div class="ring">
+          <svg viewBox="0 0 70 70" aria-hidden="true"><circle cx="35" cy="35" r="28" stroke="var(--line)"/><circle cx="35" cy="35" r="28" stroke="var(--red)" stroke-dasharray="70.4 175.9"/></svg>
+          <b>40%</b>
         </div>
+        <p>faster average query response after optimizing MySQL schemas, with page load latency down 30%.</p>
+      </article>
+      <article class="card b-c">
+        <span class="tag">2025 – 2026</span>
+        <h3>Updrop: video scheduling SaaS</h3>
+        <ul>
+          <li>React, Vite and Tailwind frontend on a FastAPI backend with Firebase Auth and Firestore.</li>
+          <li>Scheduled YouTube uploads with resumable transfers, retries and Groq-generated metadata.</li>
+          <li>Razorpay subscriptions with Svix webhook verification and slowapi rate limiting.</li>
+        </ul>
+        <div class="chips"><span>React</span><span>FastAPI</span><span>Firebase</span><span>Razorpay</span></div>
+      </article>
+      <article class="card b-d">
+        <span class="tag">Apr – Jun 2025 · Internship</span>
+        <h3>Multi-vendor e-commerce platform</h3>
+        <ul>
+          <li>Python-based marketplace with secure authentication and role-based access control.</li>
+          <li>Dynamic product listings backed by 10+ RESTful API endpoints.</li>
+        </ul>
+        <div class="chips"><span>Python</span><span>MySQL</span><span>REST</span></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <div class="mt-3.5 divide-y divide-line border-y border-line">
+<section id="stack">
+  <div class="wrap">
+    <h2 class="sec-h">The tools I reach for.</h2>
+    <div class="stack">
+      <div><h3><svg class="ln" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>Languages</h3><p>Python<br>JavaScript<br>HTML · CSS<br>SQL</p></div>
+      <div><h3><svg class="ln" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>Web</h3><p>React.js<br>Django<br>FastAPI<br>Tailwind CSS</p></div>
+      <div><h3><svg class="ln" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>Data and cloud</h3><p>Firebase<br>MySQL<br>SQLite<br>Redis</p></div>
+      <div><h3><svg class="ln" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg>Tooling</h3><p>Git · GitHub<br>Vercel<br>Celery</p></div>
+    </div>
+  </div>
+</section>
 
-          <!-- Updrop -->
-          <a href="https://updrop.in" target="_blank" rel="noopener" class="group block py-4 transition-colors">
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-2.5">
-                <h3 class="text-[1rem] font-medium text-fg transition-colors group-hover:text-blue">Updrop</h3>
-                <span class="inline-flex items-center gap-1.5 rounded-full border border-line-2 bg-panel px-2 py-0.5 font-mono text-[0.6875rem] text-muted">
-                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400/80"></span>updrop.in
-                </span>
-              </div>
-              <svg class="icon group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"><use href="#i-arrow"/></svg>
-            </div>
-            <p class="mt-1 text-[0.875rem] leading-relaxed text-body">Fast cloud file sharing and instant drop platform designed for seamless cross-device transfers.</p>
-          </a>
+<section id="path">
+  <div class="wrap two">
+    <div class="card">
+      <h3>Full Stack Developer Intern</h3>
+      <div class="row"><span class="tag">Ak InfoPark</span><span class="tag">Apr 2025 – Jun 2025</span></div>
+      <p style="margin-top:10px">Built a multi-vendor e-commerce platform, tuned MySQL schemas and shipped REST endpoints that made pages measurably faster.</p>
+    </div>
+    <div class="card">
+      <h3>B.Tech, AI &amp; Data Science</h3>
+      <div class="row"><span class="tag">The Kavery Engineering College, Salem</span><span class="tag">2022 – 2026</span></div>
+      <p style="margin-top:10px">CGPA 7.3 / 10. Certified in Python Full Stack Development (Login 360, Ak Infopark) and Frontend Development (Acharya Virtual Solutions).</p>
+    </div>
+  </div>
+</section>
 
-          <!-- FileGhost -->
-          <a href="https://file-ghost.vercel.app/" target="_blank" rel="noopener" class="group block py-4 transition-colors">
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-2.5">
-                <h3 class="text-[1rem] font-medium text-fg transition-colors group-hover:text-blue">FileGhost</h3>
-                <span class="inline-flex items-center gap-1.5 rounded-full border border-line-2 bg-panel px-2 py-0.5 font-mono text-[0.6875rem] text-muted">
-                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400/80"></span>file-ghost.vercel.app
-                </span>
-              </div>
-              <svg class="icon group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"><use href="#i-arrow"/></svg>
-            </div>
-            <p class="mt-1 text-[0.875rem] leading-relaxed text-body">Privacy-first ephemeral file sharing web application with self-destructing links and zero-clutter UI.</p>
-          </a>
+<div class="cta" id="contact">
+  <img class="deco pimg sway hide-m" src="https://i.postimg.cc/Jn9FLfs5/1792178296139.png" alt="" loading="lazy" style="left:2%;bottom:30px;width:130px">
+  <img class="deco pimg sway hide-m flip" src="https://i.postimg.cc/Jn9FLfs5/1792178296139.png" alt="" loading="lazy" style="right:2%;bottom:30px;width:130px">
+  <svg class="deco bird" style="right:22%;top:36px;width:40px" viewBox="0 0 44 22" aria-hidden="true"><use href="#birdS"/></svg>
+  <div class="wrap">
+    <h2>Build. Ship. Improve.</h2>
+    <div class="rule"></div>
+    <p>I'm looking for a fast-paced team building scalable, high-impact software. Open-source contributor, always shipping something.</p>
+    <a class="btn p" href="mailto:karthick.aidev@gmail.com">karthick.aidev@gmail.com</a>
+  </div>
+  <svg class="seig" style="position:absolute;left:0;bottom:0" aria-hidden="true"><rect width="100%" height="100%" fill="url(#sei)"/></svg>
+</div>
+</main>
 
-          <!-- Orkflo -->
-          <a href="https://orkflo.vercel.app" target="_blank" rel="noopener" class="group block py-4 transition-colors">
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-2.5">
-                <h3 class="text-[1rem] font-medium text-fg transition-colors group-hover:text-blue">Orkflo</h3>
-                <span class="inline-flex items-center gap-1.5 rounded-full border border-line-2 bg-panel px-2 py-0.5 font-mono text-[0.6875rem] text-muted">
-                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400/80"></span>orkflo.vercel.app
-                </span>
-              </div>
-              <svg class="icon group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"><use href="#i-arrow"/></svg>
-            </div>
-            <p class="mt-1 text-[0.875rem] leading-relaxed text-body">Visual workflow automation builder to orchestrate triggers, webhooks, and multi-step background jobs.</p>
-          </a>
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20L12 21z"/></svg>Karthick M S</a>
+    <nav class="links" aria-label="Social"><a href="https://github.com/" rel="noopener">GitHub</a><a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a><a href="mailto:karthick.aidev@gmail.com">Email</a></nav>
+    <span class="tag">© 2026 Karthick M S</span>
+  </div>
+</footer>
 
-        </div>
-      </section>
+<div class="pal" id="pal" hidden>
+  <div class="pbox" role="dialog" aria-modal="true" aria-label="Command palette">
+    <input id="pin" type="text" placeholder="Type a command…" autocomplete="off" aria-label="Search commands">
+    <ul id="plist"></ul>
+  </div>
+</div>
 
-      <!-- Stack (Indented Tree + Individual Stroked Grey SVGs) -->
-      <section id="stack" class="mt-9 scroll-mt-20">
-        <div class="flex items-center gap-2">
-          <svg class="icon"><use href="#i-layers"/></svg>
-          <h2 class="text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-fg">Stack</h2>
-        </div>
-        <p class="mt-1.5 text-[0.875rem] text-muted">The tools I reach for across the product.</p>
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)},root=document.documentElement;
 
-        <div class="mt-3.5 divide-y divide-line border-y border-line text-[0.875rem]">
+  // theme
+  try{var s=localStorage.getItem('theme');if(s)root.setAttribute('data-theme',s);}catch(e){}
+  function theme(){
+    var cur=root.getAttribute('data-theme'),dark=cur?cur==='dark':matchMedia('(prefers-color-scheme:dark)').matches,n=dark?'light':'dark';
+    root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}
+  }
+  $('#theme').addEventListener('click',theme);
 
-          <!-- Frontend -->
-          <div class="py-3.5">
-            <div class="flex items-center gap-2.5 font-medium text-fg">
-              <svg class="icon"><use href="#i-layout"/></svg>
-              <span>Frontend</span>
-            </div>
-            <div class="mt-2.5 ml-2 flex flex-wrap gap-2 border-l border-line-2 pl-4">
-              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-react"/></svg>React
-              </span>
-              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-vite"/></svg>Vite
-              </span>
-              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-vue"/></svg>Vue.js
-              </span>
-            </div>
-          </div>
+  // interactive note window
+  var notes={
+    orkflo:{t:'Orkflo, a digital nervous system',m:'React · Python · Celery · Redis',c:'<span class="c"># trigger → action</span>\n<span class="k">@celery.task</span>\ndef run_workflow(event):\n    for step in event.steps:\n        step.execute()\n    notify("discord")'},
+    updrop:{t:'Updrop, video scheduling',m:'React · FastAPI · Firebase',c:'<span class="c"># resumable upload + retry</span>\n<span class="k">@scheduler.scheduled_job</span>("date")\ndef upload(video):\n    meta = groq.describe(video)\n    youtube.upload(video, meta,\n                   resumable=True)'},
+    shop:{t:'Multi-vendor e-commerce',m:'Python · MySQL · REST',c:'<span class="c"># role-based access</span>\n<span class="k">@requires_role</span>("vendor")\ndef add_product(req):\n    return Product.create(req.data)'}
+  };
+  var doc=$('#doc'),btns=document.querySelectorAll('#side button');
+  function show(k){
+    var n=notes[k];if(!n)return;
+    doc.classList.remove('swap');void doc.offsetWidth;doc.classList.add('swap');
+    doc.innerHTML='<h4>'+n.t+'</h4><span class="tag">'+n.m+'</span><pre>'+n.c+'</pre>';
+    btns.forEach(function(b){b.classList.toggle('on',b.dataset.n===k)});
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.n)})});
+  show('orkflo');
 
-          <!-- Backend -->
-          <div class="py-3.5">
-            <div class="flex items-center gap-2.5 font-medium text-fg">
-              <svg class="icon"><use href="#i-server"/></svg>
-              <span>Backend</span>
-            </div>
-            <div class="mt-2.5 ml-2 flex flex-wrap gap-2 border-l border-line-2 pl-4">
-              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-fastapi"/></svg>FastAPI
-              </span>
-              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-django"/></svg>Django REST Framework
-              </span>
-              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-spring"/></svg>Spring Boot
-              </span>
-            </div>
-          </div>
+  // hero parallax (mouse only)
+  var hero=$('#hero');
+  hero.addEventListener('pointermove',function(e){
+    if(e.pointerType!=='mouse')return;
+    var r=hero.getBoundingClientRect();
+    hero.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5).toFixed(2));
+    hero.style.setProperty('--my',((e.clientY-r.top)/r.height-.5).toFixed(2));
+  });
 
-          <!-- Data and tooling -->
-          <div class="py-3.5">
-            <div class="flex items-center gap-2.5 font-medium text-fg">
-              <svg class="icon"><use href="#i-database"/></svg>
-              <span>Data and tooling</span>
-            </div>
-            <div class="mt-2.5 ml-2 flex flex-wrap gap-2 border-l border-line-2 pl-4">
-              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-postgres"/></svg>PostgreSQL
-              </span>
-              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-docker"/></svg>Docker
-              </span>
-              <span class="tech-chip inline-flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-1 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-                <svg class="icon" style="width:0.95rem;height:0.95rem"><use href="#i-git"/></svg>Git
-              </span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Zed Settings Section -->
-      <section id="setup" class="mt-9 scroll-mt-20">
-        <div class="flex items-center gap-2">
-          <svg class="icon"><use href="#i-sliders"/></svg>
-          <h2 class="text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-fg">Setup</h2>
-        </div>
-
-        <a href="https://github.com/Synaptara/zed-settings" target="_blank" rel="noopener"
-           class="group mt-3.5 block rounded-xl border border-line bg-panel p-4 transition-colors hover:border-line-2">
-          <div class="flex items-center justify-between gap-3">
-            <div class="flex items-center gap-2.5">
-              <svg class="icon group-hover:text-fg"><use href="#i-zed"/></svg>
-              <span class="text-[0.96875rem] font-medium text-fg transition-colors group-hover:text-blue">Zed Editor Configuration</span>
-            </div>
-            <svg class="icon group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"><use href="#i-arrow"/></svg>
-          </div>
-          <p class="mt-1.5 text-[0.875rem] leading-relaxed text-body">
-            My personal <span class="font-mono text-[0.8125rem] text-fg">settings.json</span> and keymaps tuned for low-latency full-stack development across Python, TypeScript, and Rust tooling.
-          </p>
-          <p class="mt-2.5 font-mono text-[0.75rem] text-muted">github.com/Synaptara/zed-settings</p>
-        </a>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact" class="mt-9 scroll-mt-20">
-        <div class="flex items-center gap-2">
-          <svg class="icon"><use href="#i-mail"/></svg>
-          <h2 class="text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-fg">Contact</h2>
-        </div>
-        <p class="mt-2.5 text-[0.9375rem]">
-          I'm open to new projects. If you care about the product you're making, <a class="prose-link" href="mailto:karthick.aidev@gmail.com">send me an email</a> and tell me what you have in mind.
-        </p>
-        <div class="mt-3">
-          <button id="copyEmailBtn" type="button"
-                  class="inline-flex items-center gap-2 rounded-lg border border-line bg-panel px-3 py-1.5 font-mono text-[0.78125rem] text-body transition-colors hover:border-line-2 hover:text-fg">
-            <svg id="copyEmailIcon" class="icon" style="width:0.9rem;height:0.9rem"><use href="#i-copy"/></svg>
-            <span id="copyEmailText">karthick.aidev@gmail.com</span>
-          </button>
-        </div>
-      </section>
-
-    </article>
-
-    <!-- Footer -->
-    <footer class="mt-6 border-t border-line py-6">
-      <div class="flex items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <img src="https://i.postimg.cc/wvY2VVDY/20261015-012007.jpg" alt="Karthick" width="38" height="38" referrerpolicy="no-referrer"
-               class="h-9 w-9 shrink-0 rounded-full bg-panel object-cover ring-1 ring-line-2" />
-          <div>
-            <p class="text-[0.9375rem] font-medium leading-tight text-fg">Karthick</p>
-            <p class="mt-0.5 whitespace-nowrap text-[0.8125rem] text-muted">Full-stack developer</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-0.5">
-          <a href="https://github.com/synaptara" target="_blank" rel="noopener" aria-label="GitHub" class="rounded-md p-2 transition-colors hover:bg-panel">
-            <svg class="icon"><use href="#i-github"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/karthick-aidev" target="_blank" rel="noopener" aria-label="LinkedIn" class="rounded-md p-2 transition-colors hover:bg-panel">
-            <svg class="icon"><use href="#i-linkedin"/></svg>
-          </a>
-          <a href="mailto:karthick.aidev@gmail.com" aria-label="Email" class="rounded-md p-2 transition-colors hover:bg-panel">
-            <svg class="icon"><use href="#i-mail"/></svg>
-          </a>
-        </div>
-      </div>
-      <p class="mt-5 text-[0.75rem] text-muted">© <span id="year"></span> Karthick</p>
-    </footer>
-
-  </main>
-
-  <script>
-    // Date
-    const now = new Date();
-    document.getElementById('today').textContent = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-    document.getElementById('year').textContent = now.getFullYear();
-
-    // Mobile Menu
-    const menuBtn = document.getElementById('menuBtn');
-    const menu = document.getElementById('menu');
-    const menuIcon = document.getElementById('menuIcon').querySelector('use');
-    function setMenu(open) {
-      menu.hidden = !open;
-      menuBtn.setAttribute('aria-expanded', String(open));
-      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      menuIcon.setAttribute('href', open ? '#i-close' : '#i-menu');
-    }
-    menuBtn.addEventListener('click', () => setMenu(menu.hidden));
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-
-    // One-click Email Copy
-    const copyEmailBtn = document.getElementById('copyEmailBtn');
-    const copyEmailText = document.getElementById('copyEmailText');
-    const copyEmailIcon = document.getElementById('copyEmailIcon').querySelector('use');
-    copyEmailBtn.addEventListener('click', async () => {
-      try { await navigator.clipboard.writeText('karthick.aidev@gmail.com'); } catch (e) {}
-      copyEmailText.textContent = 'Copied to clipboard';
-      copyEmailIcon.setAttribute('href', '#i-check');
-      setTimeout(() => {
-        copyEmailText.textContent = 'karthick.aidev@gmail.com';
-        copyEmailIcon.setAttribute('href', '#i-copy');
-      }, 1800);
+  // command palette
+  var pal=$('#pal'),pin=$('#pin'),pl=$('#plist'),sel=0,shown=[];
+  function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});}
+  var cmds=[
+    {l:'Open Orkflo note',h:'Project',f:function(){go('top');show('orkflo')}},
+    {l:'Open Updrop note',h:'Project',f:function(){go('top');show('updrop')}},
+    {l:'Open E-commerce note',h:'Project',f:function(){go('top');show('shop')}},
+    {l:'Go to Work',h:'Section',f:function(){go('work')}},
+    {l:'Go to Stack',h:'Section',f:function(){go('stack')}},
+    {l:'Go to Path',h:'Section',f:function(){go('path')}},
+    {l:'Go to Contact',h:'Section',f:function(){go('contact')}},
+    {l:'Copy email address',h:'Action',f:function(){try{navigator.clipboard.writeText('karthick.aidev@gmail.com')}catch(e){}}},
+    {l:'Toggle theme',h:'Action',f:theme}
+  ];
+  function render(){
+    var q=pin.value.toLowerCase();
+    shown=cmds.filter(function(c){return c.l.toLowerCase().indexOf(q)>-1});
+    if(sel>=shown.length)sel=0;
+    pl.innerHTML='';
+    shown.forEach(function(c,j){
+      var li=document.createElement('li');li.className=j===sel?'on':'';
+      li.innerHTML=c.l+'<span>'+c.h+'</span>';
+      li.addEventListener('click',function(){run(j)});
+      pl.appendChild(li);
     });
-  </script>
+  }
+  function run(j){var c=shown[j];if(!c)return;close();c.f();}
+  function open(){pal.hidden=false;pin.value='';sel=0;render();pin.focus();}
+  function close(){pal.hidden=true;}
+  $('#open-pal').addEventListener('click',open);
+  $('#win-pal').addEventListener('click',open);
+  pal.addEventListener('click',function(e){if(e.target===pal)close()});
+  pin.addEventListener('input',function(){sel=0;render()});
+  document.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();pal.hidden?open():close();return;}
+    if(pal.hidden)return;
+    if(e.key==='Escape')close();
+    else if(e.key==='ArrowDown'){e.preventDefault();sel=(sel+1)%shown.length;render();}
+    else if(e.key==='ArrowUp'){e.preventDefault();sel=(sel-1+shown.length)%shown.length;render();}
+    else if(e.key==='Enter'){e.preventDefault();run(sel);}
+  });
+})();
+</script>
 </body>
 </html>
